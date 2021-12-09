@@ -1,9 +1,9 @@
 #include <stdio.h>
-#include <conio.h>
+#include <sys/resource.h>
 #include <stdlib.h>
 #include<time.h>
 
-/*void Tempo_CPU_Sistema(double *seg_CPU_total, double *seg_sistema_total)
+void Tempo_CPU_Sistema(double *seg_CPU_total, double *seg_sistema_total)
 {
   long seg_CPU, seg_sistema, mseg_CPU, mseg_sistema;
   struct rusage ptempo;
@@ -17,7 +17,7 @@
 
  *seg_CPU_total     = (seg_CPU + 0.000001 * mseg_CPU);
  *seg_sistema_total = (seg_sistema + 0.000001 * mseg_sistema);
-}*/
+}
 
 
 void trocar(int *var1, int *var2)
@@ -109,15 +109,21 @@ int * callFunction(int *array, int idFunction, int size, double *seg_CPU_total_i
     switch (idFunction)
     {
     case 1:
+        Tempo_CPU_Sistema(seg_CPU_total_inicial, seg_sistema_total_inicial);
         bubble_sort(customArray, size);
+        Tempo_CPU_Sistema(seg_CPU_total_final, seg_sistema_total_final);
         return customArray;
         break;
     case 2:
+        Tempo_CPU_Sistema(seg_CPU_total_inicial, seg_sistema_total_inicial);
         selection_sort(customArray, size);
+        Tempo_CPU_Sistema(seg_CPU_total_final, seg_sistema_total_final);
         return customArray;
         break;
     case 3:
+        Tempo_CPU_Sistema(seg_CPU_total_inicial, seg_sistema_total_inicial);
         heap_sort(customArray, size);
+        Tempo_CPU_Sistema(seg_CPU_total_final, seg_sistema_total_final);
         return customArray;
         break;
     case 4:
