@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <sys/resource.h>
 #include <stdlib.h>
-#include<time.h>
+#include <time.h>
 
 void Tempo_CPU_Sistema(double *seg_CPU_total, double *seg_sistema_total)
 {
@@ -88,6 +88,21 @@ void heap_sort(int array[], int n)
     }
 }
 
+void box_sort(int array[], int n) {
+    int *box = malloc(sizeof(int) * n);
+    int pos = 0;
+    for(int i = 0; i < n; i++){
+        box[array[i]] += 1;
+    }
+    for(int i = 0; i < n; i++){
+        while(box[i] > 0){
+            box[i] -= 1;
+            array[pos] = i;
+            pos += 1;
+        }
+    }
+    free(box);
+}
 
 
 int * newArray(int n, int seed_offset) {
@@ -127,8 +142,10 @@ int * callFunction(int *array, int idFunction, int size, double *seg_CPU_total_i
         return customArray;
         break;
     case 4:
-        /* boxsort */
-        return NULL;
+        Tempo_CPU_Sistema(seg_CPU_total_inicial, seg_sistema_total_inicial);
+        box_sort(customArray, size);
+        Tempo_CPU_Sistema(seg_CPU_total_final, seg_sistema_total_final);
+        return customArray;
         break;
     
     default:
