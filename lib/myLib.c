@@ -90,11 +90,11 @@ void heap_sort(int array[], int n)
 
 
 
-int * newArray(int n) {
+int * newArray(int n, int seed_offset) {
     static int* array; 
     array = malloc(sizeof(int) * n);
 
-    srand(time(NULL));
+    srand(time(NULL) + seed_offset);
     for(int i = 0; i < n; i++){
         array[i] = rand() % n;
     }
