@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "lib/myLib.h"
-#define N_LENGTH 10 
+#define N_LENGTH 1000000
 
 int main(){
     int N = 0;
