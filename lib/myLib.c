@@ -136,3 +136,37 @@ int * callFunction(int *array, int idFunction, int size, double *seg_CPU_total_i
         break;
     }
 }
+
+
+
+void writeArray(int * array, int array_length, FILE * file) {
+   if(file == NULL)
+   {
+      printf("Error, could not create file!");   
+      exit(1);             
+   }
+
+    fprintf(file,"%d|",array_length);
+
+    int i = 0;
+   for(i = 0; i < array_length - 1; i++){
+        fprintf(file,"%d;",array[i]);
+   }
+   fprintf(file,"%d",array[i]);
+   fprintf(file,"\n");
+
+   //array_length|array[0];array[1;array[2]
+}
+
+void writeSummarize(const char * method, int array_length, double  tempo_cpu_total, FILE * file) {
+   if(file == NULL)
+   {
+      printf("Error, could not create file!");   
+      exit(1);             
+   }
+
+    fprintf(file,"%s;%d;%f",method, array_length, tempo_cpu_total);
+   fprintf(file,"\n");
+
+   //array_length|array[0];array[1;array[2]
+}
